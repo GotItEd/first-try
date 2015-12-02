@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<body>
+	<center>
+		<div ng-app="myApp" ng-controller="myCtrl">
+		<span ng-repeat="movie in movies">
+			<a href="watch.html?v={{movie.id.videoId}}">
+				<img ng-src="{{movie.snippet.thumbnails.default.url}}"/>
+				<div>{{movie.snippet.title}}</div>
+			</a>
+		<div>{{movie.snippet.description}}</div>
+		<!--d--><div>{{movie.items.Got.rank}}</div>
+		</span>
+		<br>
+		</div>
+	</center>
+	<script>
+		var app = angular.module('myApp', []);
+		var searcher = 'http://192.168.1.23:3008/youtube/search/';
+		var searching = 'cats';
+		app.controller('myCtrl', function($scope, $http) {
+			$http.get(searcher+searching)
+				.success(function(response) {
+					$scope.movies = response.items;
+				});
+		});
+	</script>
+</body>
+</html>

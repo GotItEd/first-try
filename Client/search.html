@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>  GotIt! website</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src='/ytembed.js'></script>
+</head>
+<body background="./img/g.jpg" >
+	<div class="navbar">
+    <div class="navbar-inner">
+    <a class="brand" href=".\main.html">Main</a>
+	<ul class="nav">
+            <li class="active"><a href="#">Search result</a></li>
+            <li><a href=".\watch.html">Watch</a></li>
+    </ul>
+    </div>
+	</div>
+
+	<div class="page-header">
+    <div class="row column text-center"> <h1>
+		<td><img src="./src/gotit.jpg" alt="GotIt!" style="width:204px;height:128px;"></td> <small>Education for you</small></h1 >
+    </div>
+	</div>
+	<center>
+		<div ng-app="myApp" ng-controller="myCtrl">
+		<span ng-repeat="movie in movies">
+			<a href="watch.html?v={{movie.id.videoId}}">
+				<img ng-src="{{movie.snippet.thumbnails.default.url}}"/>
+				<div>{{movie.snippet.title}}</div>
+			</a>
+		<div>{{movie.snippet.description}}</div>
+		<!--d-->
+		</span>
+		<br>
+		</div>
+	</center>
+	<script>
+		var app = angular.module('myApp', []);
+		var searcher = 'http://192.168.1.23:3008/youtube/search/';
+		var searching = 'cats';
+		app.controller('myCtrl', function($scope, $http) {
+			$http.get(searcher+searching)
+				.success(function(response) {
+					$scope.movies = response.items;
+				});
+		});
+	</script>
+	<div class="page-header">
+    <div class="row column text-center"> <script src="http://code.jquery.com/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

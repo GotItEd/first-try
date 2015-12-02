@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>  GotIt! website</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+
+
+
+<body background="./img/g.jpg">
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href=".\main.html">Main</a>
+        <ul class="nav">
+            <li><a href=".\search.html">Search result</a></li>
+            <li><a href=".\watch.html">Watch</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="page-header">
+    <div class="row column text-center"> <h1>
+        <td><img src="./src/gotit.jpg" alt="GotIt!" style="width:304px;height:228px;"></td> <small>Education for you</small></h1 >
+    </div>
+</div>
+
+
+<div class="page-header">
+    <div class="row column text-center"> <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <div class="container">
+
+           <!-- <input type="text" id="-txtValue" />
+
+             <input type="button" value="search" onclick="send(document.getElementById('txtValue').value)" />-->
+
+             <form class="form-search">
+
+                <input type="text" class="input-big" id="txtValue">
+
+                <button type="submit" class="btn" value="search"  onclick="send()">Search</button>
+          </form>
+       </div>
+   </div>
+</div>
+
+<div class="container">
+   <div class="row column text-center">
+       <div class="span12">
+           <div class="row column text-center">
+               <select id="class">
+               <option>Education level</option>
+               <option>grade A</option>
+               <option>grade B</option>
+               <option>grade C</option>
+               <option>grade D</option>
+               <option>...</option>
+           </select>
+
+           <select id="subject">
+               <option>Subject</option>
+               <option>Biology</option>
+               <option>Chemistry</option>
+               <option>Physics</option>
+           </select>
+
+           <div>
+               <input type="checkbox" name="en" id="en" value="en"> English
+               <input type="checkbox" name="he" value="he"> Hebrew
+           </div></div>
+
+</div></div></div>
+
+
+
+<script type="text/javascript">
+    function send() {
+        var search =document.getElementById('txtValue').value;
+        var filter1 = document.getElementById('class').value;
+        var filter2 = document.getElementById('subject').value;
+        var send= search, filter2;
+        var url = "http://192.168.1.23:3008/mysql/add/";
+        $.post(url,send,callback);
+        window.open(".\search.html");
+    }
+</script>
+
+<ul class="nav">
+
+</ul>
+
+
+
+</body>
+
+</html>

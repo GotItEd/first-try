@@ -1,0 +1,43 @@
+import java.sql.*;
+
+public class Driver {
+
+	final static String server = "jdbc:mysql://localhost:3306/gotit";
+	final static String user = "root";
+	final static String password = "qY3gfeke";
+
+	public static void main(String[] args) throws SQLException {
+
+		Connection myConn = null;
+		Statement myStmt = null;
+		ResultSet myRs = null;
+		
+		try {
+			// 1. Get a connection to database
+			myConn = DriverManager.getConnection(server, user, password);
+			if (myConn != null) System.out.println("Connection to database was successful.");
+			// 2. Create a statement
+			myStmt = myConn.createStatement();
+			// 3. Execute SQL query
+			myRs = myStmt.executeQuery("select * from users");
+			// 4. Process the result set
+			while (myRs.next()) {
+				System.out.println(myRs.getString("ID") + ", " + myRs.getString("UserName") + ", " + myRs.getString("Hashtags"));
+			}
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			if (myRs != null) {
+				myRs.close();
+			}
+			if (myStmt != null) {
+				myStmt.close();
+			}
+			if (myConn != null) {
+				myConn.close();
+			}
+		}
+	}
+}
